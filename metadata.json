@@ -1,0 +1,6 @@
+{
+  "name": "FORME Orthodontics — Modern & Patient-Focused Smile Care",
+  "description": "Discover a more confident smile with personalized orthodontic care, clear aligners, and braces thoughtfully designed around your lifestyle, goals, and comfort.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

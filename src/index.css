@@ -1,0 +1,195 @@
+@import "tailwindcss";
+
+:root {
+  --font-serif: 'DM Serif Display', Georgia, serif;
+  --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: #F8F6F1;
+  color: #171715;
+}
+
+.font-serif-display {
+  font-family: var(--font-serif);
+}
+
+/* Custom scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #F8F6F1;
+}
+::-webkit-scrollbar-thumb {
+  background: #D9D5CC;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #B8B3A8;
+}
+
+/* Orthodontic Appliance Motion Keyframes */
+@keyframes floatGentle {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes scanDash {
+  0% {
+    stroke-dashoffset: 40;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes pulseNode {
+  0%, 100% {
+    r: 3px;
+    opacity: 0.7;
+  }
+  50% {
+    r: 4.2px;
+    opacity: 1;
+  }
+}
+
+@keyframes wireFlex {
+  0%, 100% {
+    transform: scaleY(1);
+  }
+  50% {
+    transform: scaleY(0.92);
+  }
+}
+
+@keyframes bracketAlign {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-2px);
+  }
+}
+
+@keyframes glintGlow {
+  0% {
+    stroke-dashoffset: 120;
+    opacity: 0;
+  }
+  30% {
+    opacity: 1;
+  }
+  70% {
+    opacity: 1;
+  }
+  100% {
+    stroke-dashoffset: -120;
+    opacity: 0;
+  }
+}
+
+@keyframes rotateOrbit {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes gentleBlink {
+  0%, 90%, 100% {
+    transform: scaleY(1);
+  }
+  95% {
+    transform: scaleY(0.1);
+  }
+}
+
+@keyframes smileExpand {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+@keyframes ceramicShimmer {
+  0%, 100% {
+    opacity: 0.75;
+    filter: drop-shadow(0 0 2px rgba(169, 91, 48, 0.2));
+  }
+  50% {
+    opacity: 1;
+    filter: drop-shadow(0 0 8px rgba(169, 91, 48, 0.5));
+  }
+}
+
+.anim-float {
+  animation: floatGentle 4s ease-in-out infinite;
+}
+
+.anim-scan-dash {
+  stroke-dasharray: 6 4;
+  animation: scanDash 3s linear infinite;
+}
+
+.anim-node-1 { animation: pulseNode 2.4s ease-in-out infinite; }
+.anim-node-2 { animation: pulseNode 2.4s ease-in-out 0.3s infinite; }
+.anim-node-3 { animation: pulseNode 2.4s ease-in-out 0.6s infinite; }
+.anim-node-4 { animation: pulseNode 2.4s ease-in-out 0.9s infinite; }
+.anim-node-5 { animation: pulseNode 2.4s ease-in-out 1.2s infinite; }
+.anim-node-6 { animation: pulseNode 2.4s ease-in-out 1.5s infinite; }
+.anim-node-7 { animation: pulseNode 2.4s ease-in-out 1.8s infinite; }
+
+.anim-wire-flex {
+  transform-origin: 50% 65%;
+  animation: wireFlex 4s ease-in-out infinite;
+}
+
+.anim-bracket-1 { animation: bracketAlign 3s ease-in-out 0.2s infinite; }
+.anim-bracket-2 { animation: bracketAlign 3s ease-in-out 0.4s infinite; }
+.anim-bracket-3 { animation: bracketAlign 3s ease-in-out 0.6s infinite; }
+
+.anim-orbit {
+  transform-origin: 50px 50px;
+  animation: rotateOrbit 16s linear infinite;
+}
+
+.anim-blink {
+  transform-origin: center;
+  animation: gentleBlink 4s ease-in-out infinite;
+}
+
+.anim-smile-breath {
+  transform-origin: 50px 55px;
+  animation: smileExpand 4.5s ease-in-out infinite;
+}
+
+.anim-ceramic-shimmer {
+  animation: ceramicShimmer 3.2s ease-in-out infinite;
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .anim-float,
+  .anim-scan-dash,
+  .anim-node-1, .anim-node-2, .anim-node-3, .anim-node-4, .anim-node-5, .anim-node-6, .anim-node-7,
+  .anim-wire-flex,
+  .anim-bracket-1, .anim-bracket-2, .anim-bracket-3,
+  .anim-orbit,
+  .anim-blink,
+  .anim-smile-breath,
+  .anim-ceramic-shimmer {
+    animation: none !important;
+  }
+}
