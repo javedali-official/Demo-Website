@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { ArrowRight, ArrowDown, Star, Sparkles, Award } from 'lucide-react';
 import { PRACTICE_CONFIG } from '../data/orthoData';
+import heroInteriorAsset from '../assets/images/forme_studio_suite_1792612619340.jpg';
 
 interface HeroProps {
   onBookClick: () => void;
@@ -8,6 +9,20 @@ interface HeroProps {
 }
 
 export const Hero: React.FC<HeroProps> = ({ onBookClick, onExploreClick }) => {
+  const [currentImageSrc, setCurrentImageSrc] = useState<string>(
+    heroInteriorAsset || PRACTICE_CONFIG.heroInteriorImage || '/images/forme_studio_suite.jpg'
+  );
+  const [imageLoaded, setImageLoaded] = useState<boolean>(false);
+
+  const handleImageError = () => {
+    // If the bundled or local path failed, cascade gracefully to static public path, then robust CDN fallback
+    if (currentImageSrc !== '/images/forme_studio_suite.jpg' && currentImageSrc !== heroInteriorAsset) {
+      setCurrentImageSrc('/images/forme_studio_suite.jpg');
+    } else {
+      setCurrentImageSrc('https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=1200&q=80');
+    }
+  };
+
   return (
     <section className="relative pt-6 pb-16 lg:pt-12 lg:pb-24 overflow-hidden">
       {/* Subtle organic background ambient glow */}
@@ -21,7 +36,7 @@ export const Hero: React.FC<HeroProps> = ({ onBookClick, onExploreClick }) => {
       />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center">
           
           {/* Left Column: Typography & Intent */}
           <div className="lg:col-span-6 flex flex-col items-start space-y-6">
@@ -91,19 +106,35 @@ export const Hero: React.FC<HeroProps> = ({ onBookClick, onExploreClick }) => {
           </div>
 
           {/* Right Column: Reference-Inspired Visual Composition */}
-          <div className="lg:col-span-6 flex flex-col items-center">
+          <div className="lg:col-span-6 flex flex-col items-center w-full">
             <div className="w-full max-w-lg lg:max-w-none bg-white p-3 sm:p-4 rounded-3xl shadow-sm border border-[#171715]/8">
               
-              {/* Primary Clinic Interior Visual (Zoomed crop specifically on the clinic operatory) */}
+              {/* Primary Clinic Interior Visual */}
               <div className="relative aspect-[16/10] sm:aspect-[16/11] rounded-2xl overflow-hidden bg-[#ECE8E0] shadow-inner">
-                <div className="w-full h-full overflow-hidden relative">
-                  <img
-                    src={PRACTICE_CONFIG.heroInteriorImage}
-                    alt="Modern FORME orthodontic clinic consultation suite and digital equipment"
-                    className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
-                    loading="eager"
-                    referrerPolicy="no-referrer"
-                  />
+                {/* Skeleton shimmer while loading */}
+                {!imageLoaded && (
+                  <div className="absolute inset-0 bg-[#E6E1D7] animate-pulse flex items-center justify-center">
+                    <span className="text-xs font-medium text-[#171715]/40">Loading studio view...</span>
+                  </div>
+                )}
+                
+                <img
+                  src={currentImageSrc}
+                  alt="Modern FORME orthodontic clinic consultation suite and digital equipment"
+                  className={`w-full h-full object-cover transition-all duration-700 hover:scale-105 ${
+                    imageLoaded ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
+                  }`}
+                  loading="eager"
+                  decoding="async"
+                  referrerPolicy="no-referrer"
+                  onLoad={() => setImageLoaded(true)}
+                  onError={handleImageError}
+                />
+
+                {/* Delicate badge overlay */}
+                <div className="absolute top-3 left-3 px-3 py-1.5 rounded-full bg-black/60 backdrop-blur-md text-white text-[11px] font-medium flex items-center gap-1.5 shadow-sm border border-white/10 pointer-events-none">
+                  <Sparkles className="w-3 h-3 text-[#D5E5D5]" />
+                  <span>FORME Studio Suite</span>
                 </div>
               </div>
 

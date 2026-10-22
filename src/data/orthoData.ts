@@ -9,7 +9,7 @@ export const PRACTICE_CONFIG = {
   email: 'care@formeortho.com',
   whatsappNumber: '15558394402',
   whatsappMessage: 'Hello, I would like to inquire about booking an orthodontic consultation with FORME Orthodontics.',
-  heroInteriorImage: '/src/assets/images/forme_studio_suite_1792612619340.jpg',
+  heroInteriorImage: '/images/forme_studio_suite.jpg',
   disclaimer: 'Orthodontic treatment suitability and outcomes are determined during a comprehensive clinical examination. Information provided is for educational reference only.',
 };
 
