@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Phone, ArrowRight, Menu, X, Sparkles, User } from 'lucide-react';
+import { Phone, ArrowRight, Menu, X, Sparkles, User, MessageCircle } from 'lucide-react';
 import { PRACTICE_CONFIG } from '../data/orthoData';
 
 interface HeaderProps {
@@ -18,6 +18,18 @@ export const Header: React.FC<HeaderProps> = ({ onBookClick, onOpenPortal }) => 
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  // Prevent background scrolling when mobile menu drawer is open
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [mobileMenuOpen]);
 
   const navLinks = [
     { label: 'Treatments', href: '#treatments' },
@@ -85,29 +97,30 @@ export const Header: React.FC<HeaderProps> = ({ onBookClick, onOpenPortal }) => 
               <span className="whitespace-nowrap">{PRACTICE_CONFIG.phoneDisplay}</span>
             </a>
 
-            {/* Patient Portal Trigger Button */}
+            {/* Patient Portal Trigger Button (Compact on mobile, full on desktop) */}
             <button
               onClick={onOpenPortal}
-              className="inline-flex items-center gap-1.5 px-3 py-2 text-xs sm:text-sm font-medium text-[#171715] hover:text-[#A95B30] hover:bg-black/5 rounded-full border border-black/10 transition-colors cursor-pointer focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-[#A95B30]"
+              className="hidden sm:inline-flex items-center gap-1.5 px-3 py-2 text-xs sm:text-sm font-medium text-[#171715] hover:text-[#A95B30] hover:bg-black/5 rounded-full border border-black/10 transition-colors cursor-pointer focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-[#A95B30]"
               aria-label="Open Patient Portal login"
             >
               <User className="w-3.5 h-3.5 text-[#A95B30]" />
-              <span className="hidden sm:inline">Patient Portal</span>
+              <span>Patient Portal</span>
             </button>
 
-            {/* Primary Action Button */}
+            {/* Primary Action Button (Responsive text for small mobile screens) */}
             <button
               onClick={onBookClick}
-              className="inline-flex items-center gap-2 px-4 sm:px-5 py-2.5 text-xs sm:text-sm font-medium text-white bg-[#171715] hover:bg-[#2A2A26] active:scale-98 rounded-full shadow-xs hover:shadow-md transition-all duration-200 cursor-pointer whitespace-nowrap focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-[#A95B30]"
+              className="inline-flex items-center gap-1.5 sm:gap-2 px-3.5 sm:px-5 py-2 sm:py-2.5 text-xs sm:text-sm font-medium text-white bg-[#171715] hover:bg-[#2A2A26] active:scale-98 rounded-full shadow-xs hover:shadow-md transition-all duration-200 cursor-pointer whitespace-nowrap focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-[#A95B30]"
             >
-              <span>Book a Consultation</span>
+              <span className="hidden xs:inline">Book a Consultation</span>
+              <span className="xs:hidden">Book Now</span>
               <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" />
             </button>
 
-            {/* Mobile Menu Toggle */}
+            {/* Mobile Menu Toggle (Generous 44px touch target) */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="lg:hidden p-2 rounded-lg text-[#171715] hover:bg-black/5 focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-[#A95B30]"
+              className="lg:hidden min-w-[44px] min-h-[44px] flex items-center justify-center rounded-xl text-[#171715] hover:bg-black/5 active:bg-black/10 focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-[#A95B30] transition-colors cursor-pointer"
               aria-label={mobileMenuOpen ? 'Close Menu' : 'Open Menu'}
               aria-expanded={mobileMenuOpen}
             >
@@ -117,52 +130,82 @@ export const Header: React.FC<HeaderProps> = ({ onBookClick, onOpenPortal }) => 
         </div>
       </div>
 
-      {/* Mobile Navigation Drawer */}
+      {/* Mobile Navigation Backdrop & Drawer */}
       {mobileMenuOpen && (
-        <div className="lg:hidden fixed inset-x-0 top-[65px] bg-[#F8F6F1] border-b border-[#171715]/10 shadow-xl px-6 py-6 transition-all duration-300">
-          <nav className="flex flex-col gap-4 text-base font-medium text-[#171715]">
-            {navLinks.map((link) => (
-              <a
-                key={link.label}
-                href={link.href}
-                onClick={() => setMobileMenuOpen(false)}
-                className="py-2 border-b border-black/5 hover:text-[#A95B30] transition-colors"
-              >
-                {link.label}
-              </a>
-            ))}
-            <div className="pt-2 flex flex-col gap-3">
-              <a
-                href={`tel:${PRACTICE_CONFIG.phoneRaw}`}
-                className="flex items-center gap-2 py-2 text-sm text-[#777771]"
-              >
-                <Phone className="w-4 h-4 text-[#A95B30]" />
-                <span>{PRACTICE_CONFIG.phoneDisplay}</span>
-              </a>
-              <button
-                onClick={() => {
-                  setMobileMenuOpen(false);
-                  onOpenPortal();
-                }}
-                className="w-full flex items-center justify-center gap-2 py-2.5 text-sm font-semibold text-[#171715] bg-white border border-black/10 rounded-full hover:bg-black/5 transition-colors cursor-pointer"
-              >
-                <User className="w-4 h-4 text-[#A95B30]" />
-                <span>Patient Portal Login</span>
-              </button>
+        <>
+          {/* Backdrop overlay */}
+          <div
+            className="lg:hidden fixed inset-0 top-[60px] bg-black/40 backdrop-blur-xs z-30 transition-opacity"
+            onClick={() => setMobileMenuOpen(false)}
+            aria-hidden="true"
+          />
 
-              <button
-                onClick={() => {
-                  setMobileMenuOpen(false);
-                  onBookClick();
-                }}
-                className="w-full flex items-center justify-center gap-2 py-3 text-sm font-semibold text-white bg-[#171715] rounded-full shadow-md hover:bg-[#2A2A26] transition-colors cursor-pointer"
-              >
-                <span>Book a Consultation</span>
-                <ArrowRight className="w-4 h-4" />
-              </button>
-            </div>
-          </nav>
-        </div>
+          {/* Drawer Menu */}
+          <div className="lg:hidden fixed inset-x-0 top-[60px] z-40 bg-[#F8F6F1] border-b border-[#171715]/10 shadow-2xl px-5 sm:px-6 py-6 max-h-[calc(100dvh-60px)] overflow-y-auto overscroll-contain animate-in slide-in-from-top-2 duration-200">
+            <nav className="flex flex-col gap-3 text-base font-medium text-[#171715]">
+              {navLinks.map((link) => (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="py-2.5 px-3 rounded-xl border-b border-black/5 hover:bg-black/5 hover:text-[#A95B30] transition-colors flex items-center justify-between"
+                >
+                  <span>{link.label}</span>
+                  <ArrowRight className="w-3.5 h-3.5 text-[#777771]/60" />
+                </a>
+              ))}
+
+              <div className="pt-4 flex flex-col gap-3 border-t border-black/10">
+                {/* WhatsApp Chat Button inside Drawer */}
+                <a
+                  href={`https://wa.me/${PRACTICE_CONFIG.whatsappNumber}?text=${encodeURIComponent(
+                    PRACTICE_CONFIG.whatsappMessage
+                  )}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="w-full flex items-center justify-center gap-2.5 py-3 px-4 text-sm font-semibold text-white bg-[#25D366] hover:bg-[#20bd5a] active:bg-[#1da850] rounded-full shadow-xs transition-colors cursor-pointer"
+                >
+                  <MessageCircle className="w-4 h-4 fill-current" />
+                  <span>Chat on WhatsApp</span>
+                </a>
+
+                {/* Patient Portal Trigger */}
+                <button
+                  onClick={() => {
+                    setMobileMenuOpen(false);
+                    onOpenPortal();
+                  }}
+                  className="w-full flex items-center justify-center gap-2 py-3 px-4 text-sm font-semibold text-[#171715] bg-white border border-black/10 rounded-full hover:bg-black/5 transition-colors cursor-pointer"
+                >
+                  <User className="w-4 h-4 text-[#A95B30]" />
+                  <span>Patient Portal Login</span>
+                </button>
+
+                {/* Book Consultation */}
+                <button
+                  onClick={() => {
+                    setMobileMenuOpen(false);
+                    onBookClick();
+                  }}
+                  className="w-full flex items-center justify-center gap-2 py-3 px-4 text-sm font-semibold text-white bg-[#171715] rounded-full shadow-md hover:bg-[#2A2A26] transition-colors cursor-pointer"
+                >
+                  <span>Book a Consultation</span>
+                  <ArrowRight className="w-4 h-4" />
+                </button>
+
+                {/* Direct Phone Call */}
+                <a
+                  href={`tel:${PRACTICE_CONFIG.phoneRaw}`}
+                  className="flex items-center justify-center gap-2 py-2.5 text-xs text-[#777771] hover:text-[#171715] transition-colors"
+                >
+                  <Phone className="w-3.5 h-3.5 text-[#A95B30]" />
+                  <span>Call Us: {PRACTICE_CONFIG.phoneDisplay}</span>
+                </a>
+              </div>
+            </nav>
+          </div>
+        </>
       )}
     </header>
   );

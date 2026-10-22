@@ -316,7 +316,7 @@ export const ConsultationBooking: React.FC<ConsultationBookingProps> = ({
                       value={formData.fullName}
                       onChange={handleChange}
                       placeholder="e.g. Clara Montgomery"
-                      className={`w-full px-4 py-3 rounded-xl border bg-white text-sm text-[#171715] placeholder-[#777771]/50 focus:outline-hidden focus:ring-2 transition-colors ${
+                      className={`w-full px-4 py-3 rounded-xl border bg-white text-base sm:text-sm text-[#171715] placeholder-[#777771]/50 focus:outline-hidden focus:ring-2 transition-colors ${
                         errors.fullName
                           ? 'border-red-500 focus:ring-red-200'
                           : 'border-black/10 focus:ring-[#A95B30]/30 focus:border-[#A95B30]'
@@ -344,7 +344,7 @@ export const ConsultationBooking: React.FC<ConsultationBookingProps> = ({
                       value={formData.email}
                       onChange={handleChange}
                       placeholder="e.g. clara@example.com"
-                      className={`w-full px-4 py-3 rounded-xl border bg-white text-sm text-[#171715] placeholder-[#777771]/50 focus:outline-hidden focus:ring-2 transition-colors ${
+                      className={`w-full px-4 py-3 rounded-xl border bg-white text-base sm:text-sm text-[#171715] placeholder-[#777771]/50 focus:outline-hidden focus:ring-2 transition-colors ${
                         errors.email
                           ? 'border-red-500 focus:ring-red-200'
                           : 'border-black/10 focus:ring-[#A95B30]/30 focus:border-[#A95B30]'
@@ -372,7 +372,7 @@ export const ConsultationBooking: React.FC<ConsultationBookingProps> = ({
                       value={formData.phone}
                       onChange={handleChange}
                       placeholder="e.g. +1 (555) 234-5678"
-                      className={`w-full px-4 py-3 rounded-xl border bg-white text-sm text-[#171715] placeholder-[#777771]/50 focus:outline-hidden focus:ring-2 transition-colors ${
+                      className={`w-full px-4 py-3 rounded-xl border bg-white text-base sm:text-sm text-[#171715] placeholder-[#777771]/50 focus:outline-hidden focus:ring-2 transition-colors ${
                         errors.phone
                           ? 'border-red-500 focus:ring-red-200'
                           : 'border-black/10 focus:ring-[#A95B30]/30 focus:border-[#A95B30]'
@@ -398,7 +398,7 @@ export const ConsultationBooking: React.FC<ConsultationBookingProps> = ({
                       name="preferredLocation"
                       value={formData.preferredLocation}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 rounded-xl border border-black/10 bg-white text-sm text-[#171715] focus:outline-hidden focus:ring-2 focus:ring-[#A95B30]/30 focus:border-[#A95B30]"
+                      className="w-full px-4 py-3 rounded-xl border border-black/10 bg-white text-base sm:text-sm text-[#171715] focus:outline-hidden focus:ring-2 focus:ring-[#A95B30]/30 focus:border-[#A95B30]"
                     >
                       {CLINIC_LOCATIONS.map((loc) => (
                         <option key={loc.id} value={loc.id}>
@@ -423,7 +423,7 @@ export const ConsultationBooking: React.FC<ConsultationBookingProps> = ({
                       name="treatmentInterest"
                       value={formData.treatmentInterest}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 rounded-xl border border-black/10 bg-white text-sm text-[#171715] focus:outline-hidden focus:ring-2 focus:ring-[#A95B30]/30 focus:border-[#A95B30]"
+                      className="w-full px-4 py-3 rounded-xl border border-black/10 bg-white text-base sm:text-sm text-[#171715] focus:outline-hidden focus:ring-2 focus:ring-[#A95B30]/30 focus:border-[#A95B30]"
                     >
                       <option value="clear-aligners">Clear Aligners</option>
                       <option value="traditional-braces">Traditional Braces</option>
@@ -445,7 +445,7 @@ export const ConsultationBooking: React.FC<ConsultationBookingProps> = ({
                       value={formData.preferredDate}
                       onChange={handleChange}
                       min={new Date().toISOString().split('T')[0]}
-                      className={`w-full px-4 py-3 rounded-xl border bg-white text-sm text-[#171715] focus:outline-hidden focus:ring-2 transition-colors ${
+                      className={`w-full px-4 py-3 rounded-xl border bg-white text-base sm:text-sm text-[#171715] focus:outline-hidden focus:ring-2 transition-colors ${
                         errors.preferredDate
                           ? 'border-red-500 focus:ring-red-200'
                           : 'border-black/10 focus:ring-[#A95B30]/30 focus:border-[#A95B30]'
@@ -470,7 +470,7 @@ export const ConsultationBooking: React.FC<ConsultationBookingProps> = ({
                       name="preferredTimeOfDay"
                       value={formData.preferredTimeOfDay}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 rounded-xl border border-black/10 bg-white text-sm text-[#171715] focus:outline-hidden focus:ring-2 focus:ring-[#A95B30]/30 focus:border-[#A95B30]"
+                      className="w-full px-4 py-3 rounded-xl border border-black/10 bg-white text-base sm:text-sm text-[#171715] focus:outline-hidden focus:ring-2 focus:ring-[#A95B30]/30 focus:border-[#A95B30]"
                     >
                       <option value="morning">Morning (8:00 AM – 12:00 PM)</option>
                       <option value="afternoon">Afternoon (12:00 PM – 5:00 PM)</option>
@@ -492,7 +492,7 @@ export const ConsultationBooking: React.FC<ConsultationBookingProps> = ({
                     value={formData.message}
                     onChange={handleChange}
                     placeholder="e.g. Interested in closing a gap between front teeth; previously had braces as a teen..."
-                    className="w-full px-4 py-3 rounded-xl border border-black/10 bg-white text-sm text-[#171715] placeholder-[#777771]/50 focus:outline-hidden focus:ring-2 focus:ring-[#A95B30]/30 focus:border-[#A95B30]"
+                    className="w-full px-4 py-3 rounded-xl border border-black/10 bg-white text-base sm:text-sm text-[#171715] placeholder-[#777771]/50 focus:outline-hidden focus:ring-2 focus:ring-[#A95B30]/30 focus:border-[#A95B30]"
                   />
                 </div>
 

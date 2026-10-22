@@ -9,6 +9,21 @@ body {
   font-family: var(--font-sans);
   background-color: #F8F6F1;
   color: #171715;
+  overflow-x: hidden;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  overflow-x: hidden;
+}
+
+/* Hide scrollbar for clean horizontal tab scrolling on mobile */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 .font-serif-display {

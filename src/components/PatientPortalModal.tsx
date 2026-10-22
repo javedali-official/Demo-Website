@@ -244,7 +244,7 @@ export const PatientPortalModal: React.FC<PatientPortalModalProps> = ({
                       value={identifier}
                       onChange={(e) => setIdentifier(e.target.value)}
                       placeholder="e.g. clara@example.com or FRM-94821"
-                      className="w-full pl-10 pr-4 py-3 rounded-xl border border-black/10 bg-white text-sm text-[#171715] placeholder-[#777771]/50 focus:outline-hidden focus:ring-2 focus:ring-[#A95B30]/30 focus:border-[#A95B30]"
+                      className="w-full pl-10 pr-4 py-3 rounded-xl border border-black/10 bg-white text-base sm:text-sm text-[#171715] placeholder-[#777771]/50 focus:outline-hidden focus:ring-2 focus:ring-[#A95B30]/30 focus:border-[#A95B30]"
                     />
                   </div>
                 </div>
@@ -270,7 +270,7 @@ export const PatientPortalModal: React.FC<PatientPortalModalProps> = ({
                       value={passcode}
                       onChange={(e) => setPasscode(e.target.value)}
                       placeholder="••••••••"
-                      className="w-full pl-10 pr-4 py-3 rounded-xl border border-black/10 bg-white text-sm text-[#171715] placeholder-[#777771]/50 focus:outline-hidden focus:ring-2 focus:ring-[#A95B30]/30 focus:border-[#A95B30]"
+                      className="w-full pl-10 pr-4 py-3 rounded-xl border border-black/10 bg-white text-base sm:text-sm text-[#171715] placeholder-[#777771]/50 focus:outline-hidden focus:ring-2 focus:ring-[#A95B30]/30 focus:border-[#A95B30]"
                     />
                   </div>
                 </div>

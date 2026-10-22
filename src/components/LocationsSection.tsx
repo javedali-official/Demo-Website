@@ -295,12 +295,12 @@ export const LocationsSection: React.FC<LocationsSectionProps> = ({
               })}
 
               {/* Floating Active Location Card Over Map */}
-              <div className="absolute bottom-4 left-4 right-4 bg-white/95 backdrop-blur-md p-4 rounded-2xl border border-black/10 shadow-lg flex items-center justify-between gap-4">
+              <div className="absolute bottom-3 sm:bottom-4 left-3 sm:left-4 right-3 sm:right-4 bg-white/95 backdrop-blur-md p-3 sm:p-4 rounded-2xl border border-black/10 shadow-lg flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 sm:gap-4">
                 <div className="min-w-0">
                   <span className="text-[10px] uppercase font-bold tracking-wider text-[#A95B30] block">
                     {activeLocation.tag}
                   </span>
-                  <h4 className="font-serif-display text-base sm:text-lg font-medium text-[#171715] truncate">
+                  <h4 className="font-serif-display text-sm sm:text-lg font-medium text-[#171715] truncate">
                     {activeLocation.name}
                   </h4>
                   <p className="text-xs text-[#777771] truncate">
@@ -310,7 +310,7 @@ export const LocationsSection: React.FC<LocationsSectionProps> = ({
 
                 <button
                   onClick={() => onBookAtLocation(activeLocation.id)}
-                  className="shrink-0 inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-semibold bg-[#171715] text-white hover:bg-[#2A2A26] transition-colors cursor-pointer"
+                  className="w-full sm:w-auto shrink-0 inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-xl text-xs font-semibold bg-[#171715] text-white hover:bg-[#2A2A26] transition-colors cursor-pointer"
                 >
                   <span>Select Studio</span>
                   <ArrowRight className="w-3 h-3" />

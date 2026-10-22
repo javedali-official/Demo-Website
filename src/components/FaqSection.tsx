@@ -49,12 +49,12 @@ export const FaqSection: React.FC = () => {
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mb-8">
           
           {/* Category Tabs */}
-          <div className="flex flex-wrap gap-1.5 p-1 bg-white rounded-2xl border border-black/5 shadow-xs w-full sm:w-auto">
+          <div className="flex items-center gap-1.5 p-1 bg-white rounded-2xl border border-black/5 shadow-xs w-full sm:w-auto overflow-x-auto no-scrollbar">
             {categories.map((cat) => (
               <button
                 key={cat.id}
                 onClick={() => setSelectedCategory(cat.id)}
-                className={`px-3.5 py-1.5 text-xs font-semibold rounded-xl transition-colors cursor-pointer ${
+                className={`whitespace-nowrap px-3.5 py-1.5 text-xs font-semibold rounded-xl transition-colors cursor-pointer shrink-0 ${
                   selectedCategory === cat.id
                     ? 'bg-[#171715] text-white shadow-xs'
                     : 'text-[#777771] hover:text-[#171715]'

@@ -132,7 +132,7 @@ export const ResultsGallery: React.FC = () => {
           </div>
 
           {/* Case Selector Tabs */}
-          <div className="flex flex-wrap gap-2 p-1.5 bg-[#F8F6F1] rounded-2xl border border-black/5 shrink-0">
+          <div className="flex items-center gap-2 p-1.5 bg-[#F8F6F1] rounded-2xl border border-black/5 overflow-x-auto no-scrollbar max-w-full shrink-0">
             {PATIENT_STORIES.map((story, idx) => (
               <button
                 key={story.id}
@@ -140,7 +140,7 @@ export const ResultsGallery: React.FC = () => {
                   setSelectedCaseIndex(idx);
                   setSliderPosition(50);
                 }}
-                className={`px-4 py-2 text-xs font-semibold rounded-xl transition-all cursor-pointer ${
+                className={`whitespace-nowrap px-4 py-2 text-xs font-semibold rounded-xl transition-all cursor-pointer shrink-0 ${
                   selectedCaseIndex === idx
                     ? 'bg-white text-[#171715] shadow-xs'
                     : 'text-[#777771] hover:text-[#171715]'

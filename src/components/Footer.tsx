@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Sparkles, Phone, Mail, MapPin, ArrowUpRight, ShieldCheck, X } from 'lucide-react';
+import { Sparkles, Phone, Mail, MapPin, ArrowUpRight, ShieldCheck, X, MessageCircle } from 'lucide-react';
 import { PRACTICE_CONFIG, CLINIC_LOCATIONS, TREATMENTS } from '../data/orthoData';
 
 export const Footer: React.FC = () => {
@@ -129,6 +129,20 @@ export const Footer: React.FC = () => {
                 <Phone className="w-4 h-4 text-[#A95B30] shrink-0" />
                 <a href={`tel:${PRACTICE_CONFIG.phoneRaw}`} className="hover:text-white font-medium">
                   {PRACTICE_CONFIG.phoneDisplay}
+                </a>
+              </div>
+              <div className="flex items-center gap-2">
+                <MessageCircle className="w-4 h-4 text-[#25D366] shrink-0" />
+                <a
+                  href={`https://wa.me/${PRACTICE_CONFIG.whatsappNumber}?text=${encodeURIComponent(
+                    PRACTICE_CONFIG.whatsappMessage
+                  )}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-white font-medium flex items-center gap-1.5"
+                >
+                  <span>WhatsApp Chat</span>
+                  <span className="text-[10px] text-emerald-400 bg-emerald-950/60 px-1.5 py-0.5 rounded-full border border-emerald-800/40">Direct</span>
                 </a>
               </div>
               <div className="flex items-center gap-2">

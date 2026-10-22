@@ -13,7 +13,6 @@ import { LocationsSection } from './components/LocationsSection';
 import { FaqSection } from './components/FaqSection';
 import { FinalCta } from './components/FinalCta';
 import { Footer } from './components/Footer';
-import { WhatsAppButton } from './components/WhatsAppButton';
 import { PatientPortalModal } from './components/PatientPortalModal';
 import { ToastProvider } from './context/ToastContext';
 
@@ -138,9 +137,6 @@ export default function App() {
 
         {/* Footer */}
         <Footer />
-
-        {/* Floating WhatsApp Contact Button */}
-        <WhatsAppButton />
 
         {/* Secure Patient Portal Access Modal */}
         <PatientPortalModal

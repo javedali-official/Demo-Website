@@ -33,7 +33,7 @@ export const Hero: React.FC<HeroProps> = ({ onBookClick, onExploreClick }) => {
             </div>
 
             {/* Main Editorial Headline */}
-            <h1 className="font-serif-display text-4xl sm:text-5xl lg:text-[3.75rem] font-normal tracking-tight text-[#171715] leading-[1.1] text-balance">
+            <h1 className="font-serif-display text-3xl sm:text-5xl lg:text-[3.75rem] font-normal tracking-tight text-[#171715] leading-[1.15] text-balance">
               Your smile, <br />
               your confidence, <br />
               <span className="text-[#A95B30] italic font-normal">beautifully aligned.</span>
@@ -45,10 +45,10 @@ export const Hero: React.FC<HeroProps> = ({ onBookClick, onExploreClick }) => {
             </p>
 
             {/* Action Buttons */}
-            <div className="flex flex-wrap items-center gap-4 pt-2">
+            <div className="flex flex-col xs:flex-row items-stretch xs:items-center gap-3 sm:gap-4 pt-2 w-full xs:w-auto">
               <button
                 onClick={onBookClick}
-                className="group inline-flex items-center gap-2 px-6 py-3.5 text-sm sm:text-base font-medium text-white bg-[#171715] hover:bg-[#2A2A26] active:scale-98 rounded-full shadow-md hover:shadow-lg transition-all duration-200 cursor-pointer focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-[#A95B30]"
+                className="group w-full xs:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 text-sm sm:text-base font-medium text-white bg-[#171715] hover:bg-[#2A2A26] active:scale-98 rounded-full shadow-md hover:shadow-lg transition-all duration-200 cursor-pointer focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-[#A95B30]"
               >
                 <span>Book a Consultation</span>
                 <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
@@ -56,7 +56,7 @@ export const Hero: React.FC<HeroProps> = ({ onBookClick, onExploreClick }) => {
 
               <button
                 onClick={onExploreClick}
-                className="inline-flex items-center gap-2 px-4 py-3.5 text-sm font-medium text-[#171715] hover:text-[#A95B30] transition-colors rounded-full hover:bg-black/5 cursor-pointer focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-[#A95B30]"
+                className="w-full xs:w-auto inline-flex items-center justify-center gap-2 px-4 py-3.5 text-sm font-medium text-[#171715] hover:text-[#A95B30] transition-colors rounded-full hover:bg-black/5 cursor-pointer focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-[#A95B30]"
               >
                 <ArrowDown className="w-4 h-4 text-[#777771]" />
                 <span>Explore Treatments</span>
